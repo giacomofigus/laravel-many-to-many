@@ -26,10 +26,10 @@
                         <input type="file" name="cover_image" id="cover_image" class="form-control">
                     </div>
 
-                    <div>
+                    <div class="mt-3">
                         <div class="mb-3">
                             <label for="type_id" class="form-label">
-                                City
+                                Tipo
                             </label>
                             <select
                                 class="
@@ -55,20 +55,28 @@
                         </div>
                     </div>
 
-                    <div class="border p-3">
-                        <h5>Scegli tecnologia utilizzata</h5>
-
-                        @foreach($technologies as $item )
-                        <input 
-                            type="checkbox" 
-                            id="technologies" 
-                            name="selected_technologies" 
-                            value="{{ $item->id }}"
-                        >
-                        <label for="technology_{{ $item->id }}">
-                            {{ $item->name }}
+                    {{-- Aggiungere tecnologie --}}
+                    <div class="border p-3 mt-4">
+                        <label for="technologies" class="form-label">
+                            Select Technology
                         </label>
-                        @endforeach
+
+                        <select 
+                            multiple
+                            name="technologies[]" 
+                            id="technologies"
+                            class="form-select form-select-lg"
+                        >
+                            @forelse ($technologies as $item)
+                                <option value="{{ $item->id }}">
+                                    {{ $item->name }}
+                                </option>
+                            @empty
+                                <option value="">
+                                    Non ci sono tecnologie
+                                </option>
+                            @endforelse
+                        </select>
     
                     </div>
 

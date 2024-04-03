@@ -30,6 +30,30 @@
                     <input type="file" name="cover_image" id="cover_image" class="form-control">
                 </div>
 
+                <div class="border p-3 mt-4">
+                    <label for="technologies" class="form-label">
+                        Select Technology
+                    </label>
+
+                    <select 
+                        multiple
+                        name="technologies[]" 
+                        id="technologies"
+                        class="form-select form-select-lg"
+                    >
+                        @forelse ($technologies as $item)
+                            <option value=""{{ $item->id }}>
+                                {{ $item->name }}
+                            </option>
+                        @empty
+                            <option value="">
+                                Non ci sono tecnologie
+                            </option>
+                        @endforelse
+                    </select>
+
+                </div>
+
                 <button type="submit" class="btn btn-primary mt-4">
                     Modifica
                 </button>

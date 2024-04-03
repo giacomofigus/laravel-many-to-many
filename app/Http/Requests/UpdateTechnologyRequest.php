@@ -22,7 +22,11 @@ class UpdateTechnologyRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => ['required'],
+            'description' => ['nullable'],
+            'cover_image' => ['image|mimes:jpeg,png,jpg,gif|max:2048'],
+            'type_id' => ['nullable', 'exists:types,id'],
+            'technologies' => ['exists:technologies,id'] 
         ];
     }
 }

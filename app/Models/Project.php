@@ -29,10 +29,10 @@ class Project extends Model
     // Un progetto può avere solo un tipo (One to many)
 
     public function type(): BelongsTo{
-        return $this->BelongsTo( Type::class );
+        return $this->belongsTo( Type::class );
     }
 
-    public function projects(): BelongsToMany{
-        return $this->BelongsToMany( Technology::class );
+    public function technologies(): BelongsToMany{
+        return $this->belongsToMany( Technology::class );
     }
 }

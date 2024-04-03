@@ -44,9 +44,11 @@ class ProjectController extends Controller
     {
         $val_data = $request->validated();
 
+        //Generazione slug
         $slug = Project::generateSlug($request->name);
         $val_data['slug'] = $slug;
 
+        //Gestione immagine
         if($request->hasFile('cover_image')){
             $img_path = Storage::disk('public')->put('project_images', $request->cover_image);
 
@@ -55,7 +57,9 @@ class ProjectController extends Controller
 
         $newProject = Project::create($val_data);
         
-
+        if($request->has('technologies')){
+            $newProject->technologies()->attach( $request->technologies );
+        }
 
         return redirect()->route('dashboard.projects.index');
     }
@@ -73,9 +77,10 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        $types = Type::all();        
+        $types = Type::all();
+        $technologies = Technology::all();        
 
-        return view('pages.projects.edit', compact('project', 'types'));
+        return view('pages.projects.edit', compact('project', 'types', 'technologies'));
     }
 
     /**
