@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Project;
 use App\Models\Type;
+use App\Models\Technology;
 
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
@@ -31,8 +32,9 @@ class ProjectController extends Controller
     {
         // Ottengo i dati dalla tabella types
         $types = Type::all();
+        $technologies = Technology::all();
 
-        return view('pages.projects.create', compact('types'));
+        return view('pages.projects.create', compact('types', 'technologies'));
     }
 
     /**
@@ -53,6 +55,8 @@ class ProjectController extends Controller
 
         $newProject = Project::create($val_data);
         
+
+
         return redirect()->route('dashboard.projects.index');
     }
 

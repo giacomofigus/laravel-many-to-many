@@ -53,7 +53,23 @@
 
                             </select>
                         </div>
-                        
+                    </div>
+
+                    <div class="border p-3">
+                        <h5>Scegli tecnologia utilizzata</h5>
+
+                        @foreach($technologies as $item )
+                        <input 
+                            type="checkbox" 
+                            id="technologies" 
+                            name="selected_technologies" 
+                            value="{{ $item->id }}"
+                        >
+                        <label for="technology_{{ $item->id }}">
+                            {{ $item->name }}
+                        </label>
+                        @endforeach
+    
                     </div>
 
                     <button type="submit" class="btn btn-primary mt-4">
