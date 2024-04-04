@@ -42,7 +42,7 @@
                         class="form-select form-select-lg"
                     >
                         @forelse ($technologies as $item)
-                            <option value=""{{ $item->id }}>
+                            <option value="{{ $item->id }}">
                                 {{ $item->name }}
                             </option>
                         @empty
